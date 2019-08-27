@@ -1,7 +1,7 @@
 const Finder = require('./finder')
 const resolvePaths = require('../../lib/resolvepaths')
 
-function setup (pluginContext) {
+function setup(pluginContext) {
   const { cwd } = pluginContext
   const directories = pluginContext.directories || {}
 
@@ -12,7 +12,7 @@ function setup (pluginContext) {
     cwd,
   })
 
-  return function run () {
+  return function run() {
     return finder.deepFind()
       .then(files => files.filter(file => !file.isDirectory() && file.isApp()))
       .then(matchedFiles => matchedFiles.map(file => file.toJson()))
@@ -22,7 +22,7 @@ function setup (pluginContext) {
         } else {
           console.log(`Found ${files.length} files, and cannot send back because it's not in fork()`)
         }
-      })
+      });
   }
 }
 

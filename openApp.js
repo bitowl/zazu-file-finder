@@ -11,8 +11,8 @@ module.exports = (pluginContext) => {
 
       // Use absolute paths at all time
       app = app.replace(/^~/, os.homedir())
-
-      var p = spawn(app, [], {
+      // use dex to start the .desktop file
+      var p = spawn('dex', [app], {
         cwd: os.homedir(),
       })
       p.stderr.on('data', (data) => {
